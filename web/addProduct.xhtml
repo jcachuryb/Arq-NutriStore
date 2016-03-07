@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+        
+    <h:head>
+        <title>Agregar Producto</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="css" name="nutristore.css"  />
+    </h:head>
+    <h:body>
+        <div class="main-bar">
+            <h1>NutriStore</h1>
+            <ul>
+                <h:form>
+                    <li><h:commandLink action="index">Inicio</h:commandLink> </li>
+                </h:form>
+            </ul>
+        </div>
+        <div>Zona de Registro</div>
+        
+        <br/>
+        <br/>
+        <div class="reg-panel centered">
+            <h:form>
+                <h:panelGrid columns="1">
+                    
+                    <label>Nombre producto</label>
+                    <h:inputText a:autofocus="true" value="#{addProductBean.name}" required="true" requiredMessage="¡El nombre del producto es requerido!"
+                        label="nombre" >
+                        <f:validateLength minimum="5" maximum="45" />
+                    </h:inputText>
+                                           
+                    <label>Tipo de producto</label>
+                    <h:inputText a:autofocus="true" value="#{addProductBean.type}" required="true" requiredMessage="¡El tipo del producto es requerido!"
+                        label="tipo" >
+                        <f:validateLength minimum="5" maximum="30" />
+                    </h:inputText>
+                    
+                    <label>Descripción del producto</label>
+                    <h:inputTextarea value="#{addProductBean.desc}"
+                        label="descripción" >
+                        <f:validateLength minimum="0" maximum="200" />
+                    </h:inputTextarea>
+                    
+                    <label>Categoría del producto</label>
+                    <h:selectOneMenu value="#{addProductBean.data}">
+                        <f:selectItem itemValue="1" itemLabel="Producto" />
+                        <f:selectItem itemValue="2" itemLabel="Suplemento" />
+                    </h:selectOneMenu>
+
+                </h:panelGrid>
+                <h:commandButton action="#{addProductBean.addProduct()}" value="Agregar producto"/>
+                <br/>
+                <br/>
+                <label>Mensaje: </label>
+                <h:outputText value="#{addProductBean.message}"/>
+             
+                <br/>
+                <br/>
+
+
+            </h:form>
+        </div>
+    </h:body>
+</html>

@@ -6,9 +6,8 @@
 package BusinessLogic.Controller;
 
 import DataAccess.DAO.DietDAO;
-import DataAccess.DAO.ProductDAO;
 import DataAccess.Entity.Diet;
-import DataAccess.Entity.Product;
+import java.util.List;
 
 public class HandleDiet {
 
@@ -22,7 +21,7 @@ public class HandleDiet {
         return dao.persist(diet) != null;
     }
 
-    public boolean createDiet(String name, String desc) {
+    public boolean createDiet(String name, String desc, List<Integer> productList) {
         Diet diet = new Diet();
         diet.setNsname(name);
         diet.setNsdescription(desc);

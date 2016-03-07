@@ -19,15 +19,14 @@
 
         </div>
         <hr></hr>
-        <div class="ns-content">
-            <h:outputLabel value="#{loginBean.getUserName()}"></h:outputLabel>
-        </div>
         <div style="display:#{(indexBean.isDisplayAdminPanel())?'block':'none'}">
-            Admin Panel
+            <h:form>
+                <li ><h:commandLink action="addProduct">Agregar productos</h:commandLink> </li>
+            </h:form>
         </div>
         <div style="display:#{(indexBean.isDisplayNutritionistPanel())?'block':'none'}">
             <h:form>
-                <li ><h:commandLink action="addDiet">Agregar dieta</h:commandLink> </li>
+                <li ><h:commandLink action="addDiet">Agregar dietas</h:commandLink> </li>
             </h:form>
         </div>
         <div style="display:#{(indexBean.isDisplayClientPanel())?'block':'none'}">
