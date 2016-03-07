@@ -60,8 +60,8 @@ public class RegisterBean {
 
         String m = hu.register(name, passwordAccount, UserRole.client.ordinal());
 
-        if (m == "Success") {
-            return "index";
+        if ("Success".equals(m)) {
+            return "login";
         } else {
             message = m;
             return "registro";

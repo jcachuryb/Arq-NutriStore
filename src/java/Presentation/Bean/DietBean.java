@@ -23,7 +23,11 @@ public class DietBean {
     
     @PostConstruct
     public void init() {
+        SessionBean.validatePermission(IndexBean.UserRole.nutritionist.ordinal());
         productList = new ArrayList<>();
+        message = "";
+        name = "";
+        desc = "";
     }
     
     public String getMessage() {
@@ -64,14 +68,7 @@ public class DietBean {
     
     public void addDiet(){
         HandleDiet handler = new HandleDiet();
-        
-        if (handler.createDiet(name, desc, productList)) {
-            message = "Dieta añadida con éxito";
-        }else{
-            message = "Error al guardar";
-        }
-        
-        
+        message = handler.createDiet(name, desc, productList);
     } 
     
     

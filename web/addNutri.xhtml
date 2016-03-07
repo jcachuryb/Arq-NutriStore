@@ -12,8 +12,18 @@ and open the template in the editor.
         <title>NutriStore: Agregar Nutricionista</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <h:outputStylesheet library="css" name="nutristore.css"  />
+    <script>
+            window.onload = function () {
+                document.getElementById('hidden:link').onclick();
+            }
+        </script>
     </h:head>
-    <h:body>  
+    <h:body>
+        <h:form id="hidden" style="display:none">
+            <h:commandLink id="link">
+                <f:ajax event="click" listener="#{addNutriBean.init()}" />
+            </h:commandLink>
+        </h:form> 
         <div class="main-bar">
             <h1>NutriStore</h1>
             <ul>
@@ -25,7 +35,7 @@ and open the template in the editor.
         <div class="message-response">
             <h:outputText value="#{addNutriBean.message}" />
         </div>
-        <div>Agregue Un Nutricionista</div>
+        <div>Agregar nutricionista</div>
         <div class="reg-panel centered">
             <h:form>
                 <h:panelGrid columns="1">
@@ -61,19 +71,7 @@ and open the template in the editor.
                         <h:outputText value="Nombre"></h:outputText>
                     </f:facet>
                     <h:outputText value="#{user.username}"></h:outputText>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Contraseña"></h:outputText>
-                    </f:facet>
-                    <h:outputText value="#{user.password}"></h:outputText>
-                </h:column>
-                <f:facet name="header">
-                    <h:outputText value="Accion"></h:outputText>
-                </f:facet>
-                <h:column>
-
-                </h:column>
+                </h:column>    
             </h:dataTable>
         </div>
     </h:body>

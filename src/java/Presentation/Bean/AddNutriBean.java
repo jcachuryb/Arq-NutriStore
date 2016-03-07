@@ -26,7 +26,7 @@ public class AddNutriBean {
 
     @PostConstruct
     public void init() {
-//        SessionBean.validatePermission(UserRole.admin.ordinal());
+        SessionBean.validatePermission(UserRole.admin.ordinal());
         resetPage();
         updateUserList();
     }

@@ -65,15 +65,6 @@ public class UserDAO {
             em.close();
         }
         
-//        try {
-//            Query q = em.createQuery("Select u from User u where id_role= :roleid").
-//                    setParameter("role_id", roleid);
-//            list = q.getResultList();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            list = new ArrayList<User>();
-//        }
-
         return list;
     }
 
@@ -82,7 +73,7 @@ public class UserDAO {
         User user = null;
 
         try {
-            Query q = em.createNamedQuery("User.findByUserName");
+            Query q = em.createNamedQuery("User.findByUsername");
             q.setParameter(1, username);
             user = (User) q.getSingleResult();
         } catch (Exception e) {
@@ -103,6 +94,23 @@ public class UserDAO {
             Query q = em.createNamedQuery("User.login");
             q.setParameter(1, username);
             q.setParameter(2, password);
+            user = (User) q.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("EXCEPTION JC " + e);
+        } finally {
+            em.close();
+            return user;
+        }
+    }
+
+    public User getUserByUserName(String username) {
+        EntityManager em = factory.createEntityManager();
+        User user = null;
+
+        try {
+            Query q = em.createNamedQuery("User.findByUsername");
+            q.setParameter(1, username);
             user = (User) q.getSingleResult();
         } catch (Exception e) {
             e.printStackTrace();

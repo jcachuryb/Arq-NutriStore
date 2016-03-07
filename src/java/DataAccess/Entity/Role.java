@@ -87,5 +87,8 @@ public class Role implements Serializable {
     public String toString() {
         return "DataAccess.Entity.Role[ id=" + id + " ]";
     }
-    
+
+    public static enum UserRole {
+        admin, nutritionist, client;
+    }
 }

@@ -28,8 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Diet.findAll", query = "SELECT d FROM Diet d"),
     @NamedQuery(name = "Diet.findById", query = "SELECT d FROM Diet d WHERE d.id = :id"),
-    @NamedQuery(name = "Diet.findByNsname", query = "SELECT d FROM Diet d WHERE d.nsname = :nsname"),
-    @NamedQuery(name = "Diet.findByNsdescription", query = "SELECT d FROM Diet d WHERE d.nsdescription = :nsdescription")})
+    @NamedQuery(name = "Diet.findByNsname", query = "SELECT d FROM Diet d WHERE d.nsname = ?1")})
 public class Diet implements Serializable {
 
     private static final long serialVersionUID = 1L;

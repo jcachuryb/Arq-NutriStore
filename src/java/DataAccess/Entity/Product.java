@@ -28,9 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
     @NamedQuery(name = "Product.findById", query = "SELECT p FROM Product p WHERE p.id = :id"),
-    @NamedQuery(name = "Product.findByNsname", query = "SELECT p FROM Product p WHERE p.nsname = :nsname"),
+    @NamedQuery(name = "Product.findByNsname", query = "SELECT p FROM Product p WHERE p.nsname = ?1"),
     @NamedQuery(name = "Product.findByNstype", query = "SELECT p FROM Product p WHERE p.nstype = :nstype"),
-    @NamedQuery(name = "Product.findByNsdescription", query = "SELECT p FROM Product p WHERE p.nsdescription = :nsdescription"),
     @NamedQuery(name = "Product.findByNscategory", query = "SELECT p FROM Product p WHERE p.nscategory = :nscategory")})
 public class Product implements Serializable {
 

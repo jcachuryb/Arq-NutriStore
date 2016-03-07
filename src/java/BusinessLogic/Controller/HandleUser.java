@@ -30,7 +30,7 @@ public class HandleUser {
         mUser.setPassword(passwordAccount);
         mUser.setIdrole(roleid);
         if (userDAO.userExists(mUser.getUsername())) {
-            return "Error";
+            return "El nombre de usuario ya existe.";
         } else {
             userDAO.persist(mUser);
             return "Success";

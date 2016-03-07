@@ -6,36 +6,43 @@
 package Presentation.Bean;
 
 import BusinessLogic.Controller.HandleProduct;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
 public class AddProductBean {
-    private String name="";
-    private String type="";
-    private String desc="";
-    private String category="";
-    private String message="";
-    private String data="";
 
-    public AddProductBean() {
-        name="";
-        type="";
-        desc="";
-        category="";
-        message="";
-        data="";
+    private String name = "";
+    private String type = "";
+    private String desc = "";
+    private String category = "";
+    private String message = "";
+    private String data = "";
+
+    public void resetPage() {
+        name = "";
+        type = "";
+        desc = "";
+        category = "";
+        message = "";
+        data = "";
     }
 
-    
-    
+    @PostConstruct
+    public void init() {
+        
+        SessionBean.validatePermission(IndexBean.UserRole.admin.ordinal());
+        resetPage();
+    }
+
     public String getData() {
-	return data;
+        return data;
     }
 
     public void setData(String data) {
-	this.data = data;
+        this.data = data;
     }
 
     /**
@@ -107,18 +114,19 @@ public class AddProductBean {
     public void setMessage(String message) {
         this.message = message;
     }
-    
-    public void addProduct(){
-        HandleProduct hp = new HandleProduct();  
-        
-        if ("Producto".equals(data))
+
+    public void addProduct() {
+        HandleProduct hp = new HandleProduct();
+
+        if ("Producto".equals(data)) {
             category = "Producto";
-        else
+        } else {
             category = "Suplemento";
-        message = hp.createProduct(name, type, desc, category);  
-        data= "";
-        category ="";
-    
+        }
+        message = hp.createProduct(name, type, desc, category);
+        data = "";
+        category = "";
+
     }
-    
+
 }

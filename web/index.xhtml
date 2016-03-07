@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>NutriStore</title>
         <h:outputStylesheet library="css" name="nutristore.css"  />
@@ -22,17 +23,43 @@
         <div style="display:#{(indexBean.isDisplayAdminPanel())?'block':'none'}">
             <h:form>
                 <li ><h:commandLink action="addProduct">Agregar productos</h:commandLink> </li>
+                <li ><h:commandLink action="addNutri">Agregar nutricionistas</h:commandLink> </li>
             </h:form>
         </div>
         <div style="display:#{(indexBean.isDisplayNutritionistPanel())?'block':'none'}">
             <h:form>
                 <li ><h:commandLink action="addDiet">Agregar dietas</h:commandLink> </li>
+                <li ><h:commandLink action="dietAssignment">Asignar dietas</h:commandLink> </li>
             </h:form>
         </div>
         <div style="display:#{(indexBean.isDisplayClientPanel())?'block':'none'}">
-            Client panel
+            <h:form>
+                <h:commandLink action="productViewer">Ver Productos</h:commandLink><br/>
+                <h:commandButton value="Cargar Mis Dietas" action="#{dietsViewerBean.updateDietsList()}" />
+            </h:form>
+            <div>
+                <h:dataTable value="#{dietsViewerBean.list}" var="diet" border="1">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nombre"></h:outputText>
+                        </f:facet>
+                        <h:outputText value="#{diet.nsname}"></h:outputText>
+                    </h:column>    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Descripción"></h:outputText>
+                        </f:facet>
+                        <h:outputText value="#{diet.nsdescription}"></h:outputText>
+                    </h:column>
+<!--                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Productos"></h:outputText>
+                        </f:facet>
+                        <h:outputText value=""></h:outputText>
+                    </h:column>-->
+                </h:dataTable>
+            </div>
         </div>
-
     </h:body>
 </html>
 
