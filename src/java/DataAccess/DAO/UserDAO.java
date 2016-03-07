@@ -48,18 +48,31 @@ public class UserDAO {
         }
     }
 
-    public synchronized List<User> fetchByUserRole(BigInteger document) {
+    public synchronized List<User> fetchByUserRole(Integer roleid) {
 
         EntityManager em = factory.createEntityManager();
-        List<User> list;
+        List<User> list = new ArrayList<>();
+        
+        
         try {
-            Query q = em.createQuery("Select u from User u where id_role= :roleid").
-                    setParameter("role_id", document);
+            Query q = em.createNamedQuery("User.findByIdrole");
+            q.setParameter(1, roleid);
             list = q.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
-            list = new ArrayList<User>();
+            System.out.println("EXCEPTION JC " + e);
+        } finally {
+            em.close();
         }
+        
+//        try {
+//            Query q = em.createQuery("Select u from User u where id_role= :roleid").
+//                    setParameter("role_id", roleid);
+//            list = q.getResultList();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            list = new ArrayList<User>();
+//        }
 
         return list;
     }

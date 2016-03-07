@@ -80,4 +80,11 @@ public class SessionBean {
     public final static String userNameAtribute = "user";
     public final static String userIdAtribute = "id";
     public final static String userRoleAtribute = "role";
+
+    static boolean  validatePermission(int roleid) {
+        if (getUserSession() != null) {
+            return Integer.parseInt(getAttribute(userRoleAtribute)) == roleid;
+        }
+        return false;
+    }
 }

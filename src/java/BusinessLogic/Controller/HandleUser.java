@@ -7,6 +7,8 @@ package BusinessLogic.Controller;
 
 import DataAccess.DAO.UserDAO;
 import DataAccess.Entity.User;
+import Presentation.Bean.IndexBean.UserRole;
+import java.util.List;
 
 public class HandleUser {
     public User doLogin(String username, String password) {
@@ -34,4 +36,9 @@ public class HandleUser {
             return "Success";
         }
     }
+    
+     public List<User> getUsersByRole(UserRole role ){
+         UserDAO userDAO = new UserDAO();
+        return userDAO.fetchByUserRole(role.ordinal());
+    }  
 }

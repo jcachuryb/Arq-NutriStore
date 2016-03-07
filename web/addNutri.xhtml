@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>NutriStore: Agregar Nutricionista</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="css" name="nutristore.css"  />
+    </h:head>
+    <h:body>  
+        <div class="main-bar">
+            <h1>NutriStore</h1>
+            <ul>
+                <h:form>
+                    <li><h:commandLink action="index">Inicio</h:commandLink> </li>
+                </h:form>
+            </ul>
+        </div>
+        <div class="message-response">
+            <h:outputText value="#{addNutriBean.message}" />
+        </div>
+        <div>Agregue Un Nutricionista</div>
+        <div class="reg-panel centered">
+            <h:form>
+                <h:panelGrid columns="1">
+                    <label>Nombre</label>
+                    <h:inputText  class="text-lowercase"  a:autofocus="true" value="#{addNutriBean.name}" required="true" requiredMessage="¡El nombre es requerido!">
+                        <f:validateLength minimum="4" maximum="45" />
+                    </h:inputText>
+                    <label>Contraseña</label>
+                    <h:inputSecret value="#{addNutriBean.passwordAccount}" required="true" requiredMessage="¡La contraseña es requerida!">
+                        <f:validateLength minimum="4" maximum="45" />
+                    </h:inputSecret>
+                    <label>Repetir contraseña</label>
+                    <h:inputSecret value="#{addNutriBean.repeatPwd}" required="true" requiredMessage="¡Repite la contraseña!">
+                        <f:validateLength minimum="4" maximum="45" />
+                    </h:inputSecret>
+                </h:panelGrid>
+                <h:commandButton action="#{addNutriBean.createUser()}" value="Crear"/>
+            </h:form>
+        </div>
+        <h:form>
+            <h:commandButton value="Cargar" action="#{addNutriBean.updateUserList()}" />
+        </h:form>
+        <div>
+            <h:dataTable value="#{addNutriBean.userList}" var="user" border="1">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ID"></h:outputText>
+                    </f:facet>
+                    <h:outputText value="#{user.id}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nombre"></h:outputText>
+                    </f:facet>
+                    <h:outputText value="#{user.username}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Contraseña"></h:outputText>
+                    </f:facet>
+                    <h:outputText value="#{user.password}"></h:outputText>
+                </h:column>
+                <f:facet name="header">
+                    <h:outputText value="Accion"></h:outputText>
+                </f:facet>
+                <h:column>
+
+                </h:column>
+            </h:dataTable>
+        </div>
+    </h:body>
+</html>
