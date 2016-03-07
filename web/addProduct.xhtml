@@ -10,22 +10,20 @@ and open the template in the editor.
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-        
+
     <h:head>
         <title>Agregar Producto</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <h:outputStylesheet library="css" name="nutristore.css"  />
-    <script>
+        <script>
             window.onload = function () {
-                document.getElementById('hidden:link').onclick();
-            }
+                document.getElementById('hdnBtn').onclick();
+            };
         </script>
     </h:head>
     <h:body>
         <h:form id="hidden" style="display:none">
-            <h:commandLink id="link">
-                <f:ajax event="click" listener="#{addProductBean.init()}" />
-            </h:commandLink>
+            <h:commandButton id="hdnBtn" actionListener="#{addProductBean.onLoad()}" style="display: none;" />
         </h:form>
         <div class="main-bar">
             <h1>NutriStore</h1>
@@ -40,25 +38,25 @@ and open the template in the editor.
         <div class="reg-panel centered">
             <h:form>
                 <h:panelGrid columns="1">
-                    
+
                     <label>Nombre producto</label>
                     <h:inputText a:autofocus="true" value="#{addProductBean.name}" required="true" requiredMessage="¡El nombre del producto es requerido!"
-                        label="nombre" >
+                                 label="nombre" >
                         <f:validateLength minimum="5" maximum="45" />
                     </h:inputText>
-                                           
+
                     <label>Tipo de producto</label>
                     <h:inputText a:autofocus="true" value="#{addProductBean.type}" required="true" requiredMessage="¡El tipo del producto es requerido!"
-                        label="tipo" >
+                                 label="tipo" >
                         <f:validateLength minimum="5" maximum="30" />
                     </h:inputText>
-                    
+
                     <label>Descripción del producto</label>
                     <h:inputTextarea value="#{addProductBean.desc}"
-                        label="descripción" >
+                                     label="descripción" >
                         <f:validateLength minimum="0" maximum="200" />
                     </h:inputTextarea>
-                    
+
                     <label>Categoría del producto</label>
                     <h:selectOneMenu value="#{addProductBean.data}">
                         <f:selectItem itemValue="1" itemLabel="Producto" />
@@ -71,7 +69,7 @@ and open the template in the editor.
                 <br/>
                 <label>Mensaje: </label>
                 <h:outputText value="#{addProductBean.message}"/>
-             
+
                 <br/>
                 <br/>
 

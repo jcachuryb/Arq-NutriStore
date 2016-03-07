@@ -32,9 +32,15 @@ public class AddProductBean {
 
     @PostConstruct
     public void init() {
-        
-        SessionBean.validatePermission(IndexBean.UserRole.admin.ordinal());
-        resetPage();
+        onLoad();
+    }
+
+    public String onLoad() {
+        if (SessionBean.validatePermission(IndexBean.UserRole.nutritionist.ordinal())) {
+            resetPage();
+            return "";
+        }
+        return "index";
     }
 
     public String getData() {

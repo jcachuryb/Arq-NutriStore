@@ -13,17 +13,15 @@ and open the template in the editor.
         <title>Add Diet</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <h:outputStylesheet library="css" name="nutristore.css"  />
-    <script>
+        <script>
             window.onload = function () {
-                document.getElementById('#onload').onclick();
-            }
+                document.getElementById('hdnBtn').onclick();
+            };
         </script>
     </h:head>
     <h:body>
         <h:form id="hidden" style="display:none">
-            <h:commandLink id="link">
-                <f:ajax  id="onload" event="click" listener="#{dietBean.init()}" />
-            </h:commandLink>
+            <h:commandButton id="hdnBtn" actionListener="#{dietBean.onLoad()}" style="display: none;" />
         </h:form>
         <div class="main-bar">
             <h1>NutriStore</h1>
@@ -39,7 +37,14 @@ and open the template in the editor.
         <div>Añadir dietas</div>
         <div class="reg-panel centered">
             <h:form>
-                <h:panelGrid columns="1">
+                <h:panelGrid>
+                    <h:selectManyListbox value="#{dietBean.selectedProductList}">
+                        <f:selectItems var="entry" value="#{dietBean.products.entrySet()}"
+                                       itemValue="#{entry.key}" itemLabel="#{entry.value    }"
+                                       ></f:selectItems>
+                    </h:selectManyListbox>
+                </h:panelGrid>
+                <h:panelGrid columns="1" >
                     <label>Nombre Dieta</label>
                     <h:inputText a:autofocus="true" value="#{dietBean.name}" required="true" requiredMessage="¡El nombre es requerido!"/>
                     <label>Descripción</label>

@@ -26,20 +26,32 @@ public class DietAssignmentBean {
 
     public void assignDiet() {
         HandleDiet handler = new HandleDiet();
-        message = handler.assignDiet(username,dietId);
+        message = handler.assignDiet(username, dietId);
     }
 
     @PostConstruct
     public void init() {
-        
-        SessionBean.validatePermission(IndexBean.UserRole.nutritionist.ordinal());
+        onLoad();
+    }
+
+    public String onLoad() {
         diets = new LinkedHashMap<>();
-        loadDiets();
+        if (SessionBean.validatePermission(IndexBean.UserRole.nutritionist.ordinal())) {
+            resetPage();
+            loadDiets();
+            return "";
+        }
+        return "index";
+    }
+
+    public void resetPage() {
+        message = "";
+        username = "";
+        dietId = 0;
     }
 
     public void loadDiets() {
         HandleDiet handler = new HandleDiet();
-        diets = new LinkedHashMap<>();
         handler.mapDiets(diets);
 
     }

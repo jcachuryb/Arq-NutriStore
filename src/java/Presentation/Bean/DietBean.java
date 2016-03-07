@@ -6,8 +6,10 @@
 package Presentation.Bean;
 
 import BusinessLogic.Controller.HandleDiet;
+import BusinessLogic.Controller.HandleProduct;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -15,19 +17,32 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class DietBean {
+
     private String message;
     private String name;
     private String desc;
-    private List<Integer> productList;
-    
-    
+    private List<String> selectedProductList;
+    private Map<Integer, String> products;
+
     @PostConstruct
     public void init() {
-        SessionBean.validatePermission(IndexBean.UserRole.nutritionist.ordinal());
-        productList = new ArrayList<>();
+        onLoad();
+    }
+
+    public String onLoad() {
+        if (SessionBean.validatePermission(IndexBean.UserRole.nutritionist.ordinal())) {
+            resetPage();
+            loadProducts();
+            return "";
+        }
+        return "index";
+    }
+
+    public void resetPage(){
         message = "";
         name = "";
         desc = "";
+        selectedProductList = new ArrayList<>();
     }
     
     public String getMessage() {
@@ -53,23 +68,31 @@ public class DietBean {
     public void setDesc(String desc) {
         this.desc = desc;
     }
-    
-    public void addProduct(int id){
-        if (!productList.contains(id)) {
-            productList.add(id);
-        }
+
+    public List<String> getSelectedProductList() {
+        return selectedProductList;
     }
-    
-    public void removeProduct(int id){
-        if (productList.contains(id)) {
-            productList.remove(id);
-        }
+
+    public void setSelectedProductList(List<String> selectedProductList) {
+        this.selectedProductList = selectedProductList;
     }
-    
-    public void addDiet(){
+
+    public Map<Integer, String> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Map<Integer, String> products) {
+        this.products = products;
+    }
+
+    public void loadProducts() {
+        HandleProduct handler = new HandleProduct();
+        products = handler.mapProducts();
+    }
+
+    public void addDiet() {
         HandleDiet handler = new HandleDiet();
-        message = handler.createDiet(name, desc, productList);
-    } 
-    
-    
+        message = handler.createDiet(name, desc, selectedProductList);
+    }
+
 }

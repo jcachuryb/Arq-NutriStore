@@ -17,15 +17,13 @@ and open the template in the editor.
         <h:outputStylesheet library="css" name="nutristore.css"  />
         <script>
             window.onload = function () {
-                document.getElementById('#onload').onclick();
-            }
+                document.getElementById('hdnBtn').onclick();
+            };
         </script>
     </h:head>
     <h:body>
         <h:form id="hidden" style="display:none">
-            <h:commandLink id="link">
-                <f:ajax id="onload" event="click" listener="#{dietAssignmentBean.init()}" />
-            </h:commandLink>
+            <h:commandButton id="hdnBtn" actionListener="#{dietAssignmentBean.onLoad()}" style="display: none;" />
         </h:form>
         <div class="main-bar">
             <h1>NutriStore</h1>
@@ -56,7 +54,7 @@ and open the template in the editor.
                     </h:selectOneMenu>
 
                 </h:panelGrid>
-                <h:commandButton action="#{dietAssignmentBean.assignDiet()}" value="Crear"/>
+                <h:commandButton action="#{dietAssignmentBean.assignDiet()}" value="Asignar"/>
                 <!--<h:commandButton action="#{dietAssignmentBean.loadDiets()}"></h:commandButton>-->
             </h:form>
         </div>

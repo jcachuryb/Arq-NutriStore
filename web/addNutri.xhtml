@@ -12,18 +12,16 @@ and open the template in the editor.
         <title>NutriStore: Agregar Nutricionista</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <h:outputStylesheet library="css" name="nutristore.css"  />
-    <script>
+        <script>
             window.onload = function () {
-                document.getElementById('hidden:link').onclick();
-            }
+                document.getElementById('hdnBtn').onclick();
+            };
         </script>
     </h:head>
     <h:body>
         <h:form id="hidden" style="display:none">
-            <h:commandLink id="link">
-                <f:ajax event="click" listener="#{addNutriBean.init()}" />
-            </h:commandLink>
-        </h:form> 
+            <h:commandButton id="hdnBtn" actionListener="#{addNutriBean.onLoad()}" style="display: none;" />
+        </h:form>
         <div class="main-bar">
             <h1>NutriStore</h1>
             <ul>

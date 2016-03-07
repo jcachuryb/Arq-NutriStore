@@ -31,7 +31,6 @@ public class DietDAO {
             em.getTransaction().rollback();
         } finally {
             em.close();
-            factory.close();
             return diet;
         }
     }
@@ -74,6 +73,28 @@ public class DietDAO {
             Query q = em.createNativeQuery("insert into user_diets (nsdietid,nsuserid) values (?1,?2)").
                     setParameter(1, dietId).setParameter(2, userid);
             q.executeUpdate();
+            em.getTransaction().commit();
+            em.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println("No se pudo guardar la dieta asignada");
+            em.close();
+            return false;
+        }
+    }
+
+    public boolean matchProdDiet(List<String> productids, int dietId) {
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            Query q;
+            int productid;
+            for (int i = 0; i < productids.size(); i++) {
+                productid = Integer.parseInt(productids.get(i));
+                q = em.createNativeQuery("insert into diet_products (nsdietid,nsproductid) values (?1,?2)").
+                        setParameter(1, dietId).setParameter(2, productid);
+                q.executeUpdate();
+            }
             em.getTransaction().commit();
             em.close();
             return true;

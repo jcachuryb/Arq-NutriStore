@@ -26,7 +26,7 @@ public class HandleDiet {
         return dao.persist(diet) != null;
     }
 
-    public String createDiet(String name, String desc, List<Integer> productList) {
+    public String createDiet(String name, String desc, List<String> productList) {
         DietDAO dao = new DietDAO();
         if (dao.dietExists(name)) {
             return "Ya existe una dieta con ese nombre.";
@@ -34,7 +34,9 @@ public class HandleDiet {
         Diet diet = new Diet();
         diet.setNsname(name);
         diet.setNsdescription(desc);
-        if (dao.persist(diet) != null) {
+        diet = dao.persist(diet);
+        if (diet != null) {
+            dao.matchProdDiet(productList, diet.getId());
             return "La dieta ha sido creada con éxito.";
         }
         return "Ha ocurrido un problema al guardar.";

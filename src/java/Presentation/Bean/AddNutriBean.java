@@ -26,18 +26,25 @@ public class AddNutriBean {
 
     @PostConstruct
     public void init() {
-        SessionBean.validatePermission(UserRole.admin.ordinal());
-        resetPage();
-        updateUserList();
+        onLoad();
     }
 
-    public void resetPage(){
+    public String onLoad() {
+        if (SessionBean.validatePermission(IndexBean.UserRole.admin.ordinal())) {
+            resetPage();
+            updateUserList();
+            return "";
+        }
+        return "index";
+    }
+
+    public void resetPage() {
         name = "";
         passwordAccount = "";
         repeatPwd = "";
         message = "";
     }
-    
+
     public String getMessage() {
         return message;
     }
