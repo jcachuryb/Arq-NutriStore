@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>NutriStore</title>
+        <h:outputStylesheet library="css" name="nutristore.css"  />
+    </h:head>
+    <h:body>
+        <div class="main-bar">
+            <h1>NutriStore</h1>
+            <ul>
+                <h:form>
+                    <li style="display:#{(indexBean.isIsLoggedIn())?'none':'block'}"><h:commandLink action="login">Login</h:commandLink> </li>
+                    <li id="reg-link" style="display:#{(indexBean.isIsLoggedIn())?'none':'block'}"><h:commandLink action="registro">Registrarse</h:commandLink> </li>
+                    <li id="logout-link" style="display:#{(indexBean.isIsLoggedIn())?'block':'none'}"><h:commandLink action="#{indexBean.doLogout()}">Salir</h:commandLink> </li>
+                </h:form>
+            </ul>
+
+        </div>
+        <hr></hr>
+        <div class="ns-content">
+            <h:outputLabel value="#{loginBean.getUserName()}"></h:outputLabel>
+        </div>
+        <div style="display:#{(indexBean.isDisplayAdminPanel())?'block':'none'}">
+            Admin Panel
+        </div>
+        <div style="display:#{(indexBean.isDisplayNutritionistPanel())?'block':'none'}">
+            <h:form>
+                <li ><h:commandLink action="addDiet">Agregar dieta</h:commandLink> </li>
+            </h:form>
+        </div>
+        <div style="display:#{(indexBean.isDisplayClientPanel())?'block':'none'}">
+            Client panel
+        </div>
+
+    </h:body>
+</html>
+

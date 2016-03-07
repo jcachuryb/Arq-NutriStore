@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>NutriStore: Registro</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="css" name="nutristore.css"  />
+    </h:head>
+    <h:body>  
+        <div class="main-bar">
+            <h1>NutriStore</h1>
+            <ul>
+                <h:form>
+                    <li><h:commandLink action="index">Inicio</h:commandLink> </li>
+                </h:form>
+            </ul>
+        </div>
+        <div class="message-response">
+            <h:outputText value="#{registerBean.message}" />
+        </div>
+        <div>Zona de Registro</div>
+        <div class="reg-panel centered">
+            <h:form>
+                <h:panelGrid columns="1">
+                    <label>Nombre</label>
+                    <h:inputText a:autofocus="true" value="#{registerBean.name}" required="true" requiredMessage="¡El nombre es requerido!"/>
+                    <label>Contraseña</label>
+                    <h:inputSecret value="#{registerBean.passwordAccount}" required="true" requiredMessage="¡La contraseña es requerida!"></h:inputSecret>
+                    <label>Repetir contraseña</label>
+                    <h:inputSecret value="#{registerBean.repeatPwd}" required="true" requiredMessage="¡Repite la contraseña!"></h:inputSecret>
+                </h:panelGrid>
+                <h:commandButton action="#{registerBean.createUser}" value="Crear"/>
+            </h:form>
+        </div>
+    </h:body>
+</html>
