@@ -14,14 +14,15 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <h:outputStylesheet library="css" name="nutristore.css"  />
         <script>
-            window.onload = function () {
+            function pageloaded() {
+                alert("Loaded");
                 document.getElementById('hdnBtn').onclick();
             };
         </script>
     </h:head>
-    <h:body>
+    <h:body onload="pageloaded()">
         <h:form id="hidden" style="display:none">
-            <h:commandButton id="hdnBtn" actionListener="#{dietBean.onLoad()}" style="display: none;" />
+            <h:commandButton id="hdnBtn" action="#{dietBean.onLoad()}" >Index</h:commandButton>
         </h:form>
         <div class="main-bar">
             <h1>NutriStore</h1>
