@@ -19,6 +19,7 @@ public class RegisterBean {
     private String passwordAccount;
     private String repeatPwd;
     private String message;
+    private String document;
 
     public String getMessage() {
         return message;
@@ -55,10 +56,21 @@ public class RegisterBean {
         this.passwordAccount = passwordAccount;
     }
 
+    public String getDocument() {
+        return document;
+    }
+
+    public void setDocument(String document) {
+        this.document = document;
+    }
+
     public String createUser() {
         HandleUser hu = new HandleUser();
-
-        String m = hu.register(name, passwordAccount, UserRole.client.ordinal());
+        String m = "";
+        try {
+            m = hu.register(name, passwordAccount, UserRole.client.ordinal(), Long.parseLong(getDocument()));
+        } catch (Exception e) {
+        }
 
         if ("Success".equals(m)) {
             return "login";

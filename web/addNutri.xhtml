@@ -41,6 +41,10 @@ and open the template in the editor.
                     <h:inputText  class="text-lowercase"  a:autofocus="true" value="#{addNutriBean.name}" required="true" requiredMessage="¡El nombre es requerido!">
                         <f:validateLength minimum="4" maximum="45" />
                     </h:inputText>
+                    <label>Documento</label>
+                    <h:inputText  class="text-lowercase" value="#{addNutriBean.document}" required="true" requiredMessage="¡El documento es requerido!">
+                        <f:validateLength minimum="4" maximum="20" />
+                    </h:inputText>
                     <label>Contraseña</label>
                     <h:inputSecret value="#{addNutriBean.passwordAccount}" required="true" requiredMessage="¡La contraseña es requerida!">
                         <f:validateLength minimum="4" maximum="45" />

@@ -23,9 +23,9 @@ public class UserExistsWS {
      * @return 
      */
     @WebMethod(operationName = "UserExists")
-    public boolean UserExists(String username) {
+    public boolean UserExists(long document) {
         UserDAO daoUser = new UserDAO();
-        User user = daoUser.getUserByUserName(username);
+        User user = daoUser.getUserByDocument(document);
         
         if (user == null) return false;
         

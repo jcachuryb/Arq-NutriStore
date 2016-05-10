@@ -22,13 +22,14 @@ public class HandleUser {
         return null;
     }
 
-    public String register(String name, String passwordAccount, int roleid) {
+    public String register(String name, String passwordAccount, int roleid, long document) {
         User mUser = new User();
         UserDAO userDAO = new UserDAO();
 
         mUser.setUsername(name);
         mUser.setPassword(passwordAccount);
         mUser.setIdrole(roleid);
+        mUser.setDocument(document);
         if (userDAO.userExists(mUser.getUsername())) {
             return "El nombre de usuario ya existe.";
         } else {

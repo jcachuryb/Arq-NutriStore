@@ -30,6 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
     @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
     @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = ?1"),
+    @NamedQuery(name = "User.findByDocument", query = "SELECT u FROM User u WHERE u.document = ?1"),
     @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
     @NamedQuery(name = "User.findByIdrole", query = "SELECT u FROM User u WHERE u.idrole = ?1"),
     @NamedQuery(name = "User.login", query = "SELECT u FROM User u WHERE u.username = ?1 and u.password = ?2")})
@@ -53,6 +54,10 @@ public class User implements Serializable {
     private String password;
     @Column(name = "idrole")
     private Integer idrole;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "document")
+    private long document;
 
     public User() {
     }
@@ -117,6 +122,14 @@ public class User implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public long getDocument() {
+        return document;
+    }
+
+    public void setDocument(long document) {
+        this.document = document;
     }
 
     @Override

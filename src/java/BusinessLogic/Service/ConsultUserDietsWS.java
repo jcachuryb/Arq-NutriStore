@@ -27,9 +27,9 @@ public class ConsultUserDietsWS {
      * This is a sample web service operation
      */
     @WebMethod(operationName = "ConsultUserDiets")
-    public List<String[]> ConsultUserDiets(String username) {
+    public List<String[]> ConsultUserDiets(long document) {
         UserDAO daoUser = new UserDAO();
-        User user = daoUser.getUserByUserName(username);
+        User user = daoUser.getUserByDocument(document);
         if (user == null) {
             return null;
         }else if(user.getIdrole() != Role.UserRole.client.ordinal()){
@@ -39,15 +39,16 @@ public class ConsultUserDietsWS {
         HandleDiet dietHandler = new HandleDiet();
         List<Diet> list = dietHandler.loadUserDiets(id);
         List<String[]> diets = new ArrayList<String[]>();
-        String[] sDiet = new String[3];
+        String[] sDiet = new String[1];
         for (Diet diet : list) {
             sDiet[0] = diet.getId() + "";
             sDiet[1] = diet.getNsname();
             sDiet[2] = diet.getNsdescription();
             diets.add(sDiet);
-            sDiet = new String[3];
+            sDiet = new String[1];
         }
-
+        System.out.println("*******************************************************************"+
+                "LIST SIZE: " + diets.size());
         return diets;
     }
 }

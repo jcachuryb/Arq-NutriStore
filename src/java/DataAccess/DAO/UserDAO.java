@@ -120,4 +120,21 @@ public class UserDAO {
             return user;
         }
     }
+    
+    public User getUserByDocument(long document) {
+        EntityManager em = factory.createEntityManager();
+        User user = null;
+
+        try {
+            Query q = em.createNamedQuery("User.findByDocument");
+            q.setParameter(1, document);
+            user = (User) q.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("EXCEPTION JC " + e);
+        } finally {
+            em.close();
+            return user;
+        }
+    }
 }

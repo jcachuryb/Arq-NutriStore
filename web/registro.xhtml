@@ -6,7 +6,8 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>NutriStore: Registro</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -25,11 +26,15 @@ and open the template in the editor.
             <h:outputText value="#{registerBean.message}" />
         </div>
         <div class="reg-panel centered">
-        <div>Zona de Registro</div>
+            <div>Zona de Registro</div>
             <h:form>
                 <h:panelGrid columns="1">
                     <label>Nombre</label>
                     <h:inputText a:autofocus="true" value="#{registerBean.name}" required="true" requiredMessage="¡El nombre es requerido!"/>
+                    <label>Documento</label>
+                    <h:inputText value="#{registerBean.document}" required="true" requiredMessage="¡El documento es requerido!">
+                        <f:validateLength minimum="4" maximum="20" />
+                    </h:inputText>
                     <label>Contraseña</label>
                     <h:inputSecret value="#{registerBean.passwordAccount}" required="true" requiredMessage="¡La contraseña es requerida!"></h:inputSecret>
                     <label>Repetir contraseña</label>
